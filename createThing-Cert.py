@@ -9,7 +9,7 @@ import string
 ################################################### Parameters for Thing
 thingArn = ''
 thingId = ''
-thingName = ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(15)])
+thingName = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(15)])
 defaultPolicyName = 'GGTest_Group_Core-policy'
 ###################################################
 
