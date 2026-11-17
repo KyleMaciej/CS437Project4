@@ -72,7 +72,7 @@ class MQTTClient:
 
 print("Loading vehicle data...")
 data = []
-for i in range(5):
+for i in range(4):
     a = pd.read_csv(data_path.format(i))
     data.append(a)
 
