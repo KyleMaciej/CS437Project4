@@ -9,7 +9,6 @@ import string
 ################################################### Parameters for Thing
 thingArn = ''
 thingId = ''
-thingName = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(15)])
 policies = [
 	"Thing1Subscribe",
 	"Thing1Recieve",
@@ -20,6 +19,7 @@ policies = [
 
 def createThing():
     global thingClient
+	
 	thingName = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(15)])
 	
     thingResponse = thingClient.create_thing(
