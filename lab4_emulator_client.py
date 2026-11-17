@@ -15,7 +15,7 @@ device_end = 401
 data_path = "data/vehicle{}.csv"
 
 #Path to your certificates, modify this
-certificate_formatter = "certificate.pem"
+certificate_formatter = "0c00cf2f1f46738341117739009888732585d935022331fb2d7ccc5a8dbef1f5-certificate.pem.crt"
 key_formatter = "0c00cf2f1f46738341117739009888732585d935022331fb2d7ccc5a8dbef1f5-private.pem.key"
 
 
