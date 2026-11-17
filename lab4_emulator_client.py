@@ -37,7 +37,9 @@ class MQTTClient:
 
     def customOnMessage(self,message):
         #TODO 3: fill in the function to show your received message
-        print("client {} received payload {} from topic {}".format(self.device_id, , ))
+        clean_message = message.payload.decode("utf-8")
+        
+        print("client {} received payload {} from topic {}".format(self.device_id, clean_message, clean_message))
 
 
     # Suback callback
