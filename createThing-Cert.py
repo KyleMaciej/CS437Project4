@@ -19,7 +19,6 @@ policies = [
 
 def createThing():
     global thingClient
-
 	name = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(15)])
     thingResponse = thingClient.create_thing(
         thingName = name
