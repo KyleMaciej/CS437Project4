@@ -19,8 +19,10 @@ policies = [
 
 def createThing():
     global thingClient
+
+	name = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(15)])
     thingResponse = thingClient.create_thing(
-        thingName = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(15)])
+        thingName = name
     )
     data = json.loads(json.dumps(thingResponse, sort_keys=False, indent=4))
     for element in data: 
@@ -28,7 +30,7 @@ def createThing():
             thingArn = data['thingArn']
         elif element == 'thingId':
             thingId = data['thingId']
-        createCertificate(thingName)
+        createCertificate(name)
 
 def createCertificate(thingName):
 	global thingClient
