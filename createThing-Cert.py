@@ -28,9 +28,9 @@ def createThing():
             thingArn = data['thingArn']
         elif element == 'thingId':
             thingId = data['thingId']
-        createCertificate()
+        createCertificate(thingName)
 
-def createCertificate():
+def createCertificate(thingName):
 	global thingClient
 	certResponse = thingClient.create_keys_and_certificate(
 			setAsActive = True
