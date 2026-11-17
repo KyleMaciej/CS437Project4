@@ -63,6 +63,10 @@ def createCertificate():
 		thingName = thingName,
 		principal = certificateArn
 	)
+	response = thingClient.add_thing_to_thing_group(
+		thingName = thingName,
+		thingGroupName = "ThingGroup'
+	)
 
 thingClient = boto3.client('iot')
 createThing()
