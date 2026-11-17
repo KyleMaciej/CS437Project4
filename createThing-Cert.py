@@ -17,10 +17,10 @@ policies = [
 ]
 ###################################################
 
-def createThing():
+def createThing(num):
     global thingClient
 	
-    name = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(15)])
+    name = str(num)
     thingResponse = thingClient.create_thing(
         thingName = name
     )
@@ -70,5 +70,5 @@ def createCertificate(thingName):
 	)
 
 thingClient = boto3.client('iot')
-for i in range(12000):
-	createThing()
+for i in range(10):
+	createThing(i)
