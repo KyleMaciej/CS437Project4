@@ -14,18 +14,17 @@ defaultPolicyName = 'GGTest_Group_Core-policy'
 ###################################################
 
 def createThing():
-  global thingClient
-  thingResponse = thingClient.create_thing(
-      thingName = thingName
-  )
-  data = json.loads(json.dumps(thingResponse, sort_keys=False, indent=4))
-  for element in data: 
-    if element == 'thingArn':
-        thingArn = data['thingArn']
-    elif element == 'thingId':
-        thingId = data['thingId']
-	
-	createCertificate()
+    global thingClient
+    thingResponse = thingClient.create_thing(
+        thingName = thingName
+    )
+    data = json.loads(json.dumps(thingResponse, sort_keys=False, indent=4))
+    for element in data: 
+        if element == 'thingArn':
+            thingArn = data['thingArn']
+        elif element == 'thingId':
+            thingId = data['thingId']
+        createCertificate()
 
 def createCertificate():
 	global thingClient
@@ -52,12 +51,12 @@ def createCertificate():
 			outfile.write(certificatePem)
 
 	response = thingClient.attach_policy(
-			policyName = defaultPolicyName,
-			target = certificateArn
+        policyName = defaultPolicyName,
+		target = certificateArn
 	)
 	response = thingClient.attach_thing_principal(
-			thingName = thingName,
-			principal = certificateArn
+		thingName = thingName,
+		principal = certificateArn
 	)
 
 thingClient = boto3.client('iot')
