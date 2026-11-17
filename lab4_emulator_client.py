@@ -9,7 +9,7 @@ import numpy as np
 #TODO 1: modify the following parameters
 #Starting and end index, modify this
 device_st = 0
-device_end = 10
+device_end = 9
 
 #Path to the dataset, modify this
 data_path = "data/vehicle{}.csv"
