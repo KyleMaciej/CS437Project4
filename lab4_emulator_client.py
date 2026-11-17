@@ -15,8 +15,8 @@ device_end = 10
 data_path = "data/vehicle{}.csv"
 
 #Path to your certificates, modify this
-certificate_formatter = "0c00cf2f1f46738341117739009888732585d935022331fb2d7ccc5a8dbef1f5-certificate.pem.crt"
-key_formatter = "0c00cf2f1f46738341117739009888732585d935022331fb2d7ccc5a8dbef1f5-private.pem.key"
+certificate_formatter = "keys/0c00cf2f1f46738341117739009888732585d935022331fb2d7ccc5a8dbef1f5-certificate.pem.crt"
+key_formatter = "keys/0c00cf2f1f46738341117739009888732585d935022331fb2d7ccc5a8dbef1f5-private.pem.key"
 
 
 class MQTTClient:
@@ -27,7 +27,7 @@ class MQTTClient:
         self.client = AWSIoTMQTTClient(self.device_id)
         #TODO 2: modify your broker address
         self.client.configureEndpoint("a1qb4s27u7u3as-ats.iot.us-east-2.amazonaws.com", 8883)
-        self.client.configureCredentials("./keys/AmazonRootCA1.pem", key, cert)
+        self.client.configureCredentials("keys/AmazonRootCA1.pem", key, cert)
         self.client.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
         self.client.configureDrainingFrequency(2)  # Draining: 2 Hz
         self.client.configureConnectDisconnectTimeout(10)  # 10 sec
