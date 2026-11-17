@@ -10,7 +10,12 @@ import string
 thingArn = ''
 thingId = ''
 thingName = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(15)])
-defaultPolicyName = 'GGTest_Group_Core-policy'
+policies = [
+	"Thing1Subscribe",
+	"Thing1Recieve",
+	"Thing1Publish",
+	"Thing1Policy",
+]
 ###################################################
 
 def createThing():
@@ -49,11 +54,11 @@ def createCertificate():
 			outfile.write(PrivateKey)
 	with open('cert.pem', 'w') as outfile:
 			outfile.write(certificatePem)
-
-	response = thingClient.attach_policy(
-        policyName = defaultPolicyName,
-		target = certificateArn
-	)
+	for policy in policies:
+		response = thingClient.attach_policy(
+	        policyName = policy,
+			target = certificateArn
+		)
 	response = thingClient.attach_thing_principal(
 		thingName = thingName,
 		principal = certificateArn
