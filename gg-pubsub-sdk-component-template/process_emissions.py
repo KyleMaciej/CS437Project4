@@ -22,10 +22,10 @@ def lambda_handler(event, context):
             maxCounter = CO2_val
         
     # TODO3: Return the result
-    client.publish(
-        topic="iot/Vehicle_" + vehicle_stat,
-        queueFullPolicy="AllOrException",
-        payload=json.dumps({"max_CO2": maxCounter, }),
+    client.publish_to_iot_core(
+        topic_name="iot/Vehicle_" + vehicle_stat,
+        qos="1",
+        payload=json.dumps({"max_CO2": maxCounter}).encode("utf-8"),
     )
 
     return
