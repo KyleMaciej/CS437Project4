@@ -2,13 +2,13 @@ import json
 import logging
 import sys
 
-import greengrasssdk
+from awsiot.greengrasscoreipc.clientv2 import GreengrassCoreIPCClientV2
 
 # Logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # SDK Client
-client = greengrasssdk.client("iot-data")
+client = GreengrassCoreIPCClientV2()
 
 def lambda_handler(event, context):
     # TODO1: Get your data
