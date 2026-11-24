@@ -29,3 +29,18 @@ def lambda_handler(event, context):
     )
 
     return
+
+def _on_stream_event(event) -> None:
+    raw = event.message.payload
+    payload = json.loads(raw.decode("utf-8") if isinstance(raw, bytes) else raw)
+    lambda_handler(payload, None)
+
+
+if __name__ == "__main__":
+    client.subscribe_to_iot_core(
+        topic_name=INPUT_TOPIC,
+        qos="1",
+        on_stream_event=_on_stream_event,
+    )
+    while True:
+        time.sleep(10)
