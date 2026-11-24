@@ -7,13 +7,19 @@
   "ComponentConfiguration": {
     "DefaultConfiguration": {
       "GGV2PubSubSdkConfig": {
-        "base-pubsub-topic" : "com.example.greengrass-pubsub-component",
-        "ipc-subscribe-topics" : ["ipc/my-app/broadcast", "ipc/my-app/error"],
-        "mqtt-subscribe-topics" : ["mqtt/my-app/broadcast", "mqtt/my-app/error"]
+        "base-pubsub-topic": "com.example.greengrass-pubsub-component",
+        "ipc-subscribe-topics": [
+          "ipc/my-app/broadcast",
+          "ipc/my-app/error"
+        ],
+        "mqtt-subscribe-topics": [
+          "mqtt/my-app/broadcast",
+          "mqtt/my-app/error"
+        ]
       },
       "accessControl": {
         "aws.greengrass.ipc.pubsub": {
-          "com.example.greengrass-pubsub-componentE:publish:1": {
+          "com.example.greengrass-pubsub-component:publish:1": {
             "policyDescription": "Allows access to publish to the component IPC topics.",
             "operations": [
               "aws.greengrass#PublishToTopic"
@@ -63,17 +69,17 @@
       },
       "Artifacts": [
         {
-          "URI": "s3://aws-greengrass-components/src.zip",
+          "URI": "s3://aws-greengrass-component-artefacts-us-east-2-480854436029/gg-pubsub-sdk-component-template.zip",
           "Unarchive": "ZIP"
         }
       ],
       "Lifecycle": {
-        "Install" : {
-          "Timeout" : 300,
-          "Script" : "python3 -m pip install awsgreengrasspubsubsdk"
+        "Install": {
+          "Timeout": 300,
+          "Script": "python3 -m pip install --break-system-packages awsgreengrasspubsubsdk"
         },
         "Run": {
-          "Script": "python3 -u {artifacts:decompressedPath}/src/main.py '{configuration:/GGV2PubSubSdkConfig}'",
+          "Script": "python3 -u {artifacts:decompressedPath}/gg-pubsub-sdk-component-template/process_emissions.py '{configuration:/GGV2PubSubSdkConfig}'",
           "RequiresPrivilege": "false"
         }
       }
