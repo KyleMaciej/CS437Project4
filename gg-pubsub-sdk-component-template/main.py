@@ -27,7 +27,7 @@ from awsgreengrasspubsubsdk.pubsub_client import AwsGreengrassPubSubSdkClient
 # Example user defined message handling classes
 # from pubsub_message_handlers.my_system_message_handler import MySystemMessageHandler
 # from pubsub_message_handlers.my_sensor_message_handler import MySensorMessageHandler
-from handler import 
+from handler import EmissionHandler
 
 # Config the logger.
 log = logging.getLogger(__name__)
@@ -76,7 +76,8 @@ class MyAwsGreengrassV2Component():
         # self.pubsub_client.register_message_handler(self.my_sensor_message_handler)
         # log.info('Initialising and registering MySensorMessageHandler Class - Complete')
         
-      
+        self.emission_handler = EmissionHandler(self.publish_message, self.publish_error, self.message_formatter)
+        self.pubsub_client.register_message_handler(self.emission_handler)
 
         # Activate the MQTT and IPC PubSub Channels, can active one, either or both.
         log.info('Activating AWS Greengrass PubSub SDK IPC and MQTT Protocols')
