@@ -1,14 +1,14 @@
 {
   "component" :{
     "[ENTER COMPONENTS NAME]": {
-      "author": "[ENTER AUTHORS NAME]",
+      "author": "Kyle Maciej",
       "version": "NEXT_PATCH",
       "build": {
         "build_system" :"zip"
       },
       "publish": {
-        "bucket": "[ENTER S3 BUCKET FOR DEPLOYMEMT ARTIFACTS]",
-        "region": "[ENTER AWS REGON TO PUBLISH COMPONENT]"
+        "bucket": "aws-greengrass-component-artefacts",
+        "region": "us-east-2"
       }
     }
   },
