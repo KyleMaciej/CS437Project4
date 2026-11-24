@@ -1,6 +1,6 @@
 {
   "component" :{
-    "[ENTER COMPONENTS NAME]": {
+    "com.example.greengrass-pubsub-component": {
       "author": "Kyle Maciej",
       "version": "NEXT_PATCH",
       "build": {
