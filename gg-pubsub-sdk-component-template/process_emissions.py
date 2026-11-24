@@ -14,11 +14,16 @@ client = GreengrassCoreIPCClientV2()
 def lambda_handler(event, context):
     # TODO1: Get your data
     raw_output = event.message.payload
-    payload = json.loads(raw_output.decode("utf-8") if isinstance(raw_output, bytes) else raw_output)
+    possible_payload = json.loads(raw_output.decode("utf-8") if isinstance(raw_output, bytes) else str(raw_output))
+    
+    if isinstance(possible_payload, str):
+        possible_payload = json.loads(possible_payload)
+
+    rows = possible_payload if isinstance(possible_payload, list) else [possible_payload]
     # TODO2: Calculate max CO2 emission
     maxCounter = 0.0
     vehicle_stat = None
-    for record in payload:
+    for record in rows:
         CO2_val = float(record['vehicle_CO2'])
         vehicle_stat = record['vehicle_id'] 
 
