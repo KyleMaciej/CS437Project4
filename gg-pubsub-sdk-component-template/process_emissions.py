@@ -39,7 +39,7 @@ def _on_stream_event(event) -> None:
 
 if __name__ == "__main__":
     client.subscribe_to_iot_core(
-        topic_name="emissions",
+        topic_name="vehicle/emission/data",
         qos="1",
         on_stream_event=_on_stream_event,
     )
