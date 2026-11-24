@@ -25,8 +25,9 @@ from awsgreengrasspubsubsdk.message_formatter import PubSubMessageFormatter
 from awsgreengrasspubsubsdk.pubsub_client import AwsGreengrassPubSubSdkClient
 
 # Example user defined message handling classes
-from pubsub_message_handlers.my_system_message_handler import MySystemMessageHandler
-from pubsub_message_handlers.my_sensor_message_handler import MySensorMessageHandler
+# from pubsub_message_handlers.my_system_message_handler import MySystemMessageHandler
+# from pubsub_message_handlers.my_sensor_message_handler import MySensorMessageHandler
+from handler import 
 
 # Config the logger.
 log = logging.getLogger(__name__)
@@ -64,16 +65,18 @@ class MyAwsGreengrassV2Component():
         # Initilise and register example user defined message handler classes for message routing.
         ##################################################################################
         # Message handler for System type requests
-        log.info('Initialising and registering MySystemMessageHandler Class')
-        self.my_system_message_handler = MySystemMessageHandler(self.publish_message, self.publish_error, self.message_formatter)
-        self.pubsub_client.register_message_handler(self.my_system_message_handler)
-        log.info('Initialising and registering MySystemMessageHandlerClass - Complete')
+        # log.info('Initialising and registering MySystemMessageHandler Class')
+        # self.my_system_message_handler = MySystemMessageHandler(self.publish_message, self.publish_error, self.message_formatter)
+        # self.pubsub_client.register_message_handler(self.my_system_message_handler)
+        # log.info('Initialising and registering MySystemMessageHandlerClass - Complete')
 
-         # Message handler for connected sensor type requests
-        log.info('Initialising and registering MySensorMessageHandler Class')
-        self.my_sensor_message_handler = MySensorMessageHandler(self.publish_message, self.publish_error, self.message_formatter)
-        self.pubsub_client.register_message_handler(self.my_sensor_message_handler)
-        log.info('Initialising and registering MySensorMessageHandler Class - Complete')
+        #  # Message handler for connected sensor type requests
+        # log.info('Initialising and registering MySensorMessageHandler Class')
+        # self.my_sensor_message_handler = MySensorMessageHandler(self.publish_message, self.publish_error, self.message_formatter)
+        # self.pubsub_client.register_message_handler(self.my_sensor_message_handler)
+        # log.info('Initialising and registering MySensorMessageHandler Class - Complete')
+        
+      
 
         # Activate the MQTT and IPC PubSub Channels, can active one, either or both.
         log.info('Activating AWS Greengrass PubSub SDK IPC and MQTT Protocols')
