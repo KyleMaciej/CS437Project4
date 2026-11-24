@@ -39,7 +39,7 @@ class MQTTClient:
         #TODO 3: fill in the function to show your received message
         clean_message = message.payload.decode("utf-8")
         
-        print("client {} received payload {} from topic {}".format(self.device_id, clean_message, clean_message))
+        print("client {} received payload {} from topic {}".format(self.device_id, clean_message, message.topic))
 
 
     # Suback callback
