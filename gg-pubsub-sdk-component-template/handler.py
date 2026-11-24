@@ -24,7 +24,7 @@ class EmissionHandler():
 
   def process(self, protocol, topic, message_id, status, route, message):
 
-    msg = process_emission(message)
+    msg = process_emissions(message)
     response = self.message_formatter.get_message(
       message_id=message_id,
       route="emissions_route",
