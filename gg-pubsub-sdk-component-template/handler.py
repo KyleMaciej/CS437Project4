@@ -9,7 +9,7 @@ from process_emissions import process_emissions
 # Config the logger.
 log = logging.getLogger(__name__)
 
-class MySensorMessageHandler():
+class EmissionHandler():
   
   def __init__(self, publish_message, publish_error, message_formatter):
         '''
