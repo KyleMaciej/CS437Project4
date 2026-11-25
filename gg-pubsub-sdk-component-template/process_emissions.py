@@ -37,7 +37,7 @@ def lambda_handler(event, context):
             max_speed = speed
     
     # TODO3: Return the result
-    new_payload = json.dumps({"max_CO2": maxCounter, "max_speed", max_speed}).encode("utf-8")
+    new_payload = json.dumps({"max_CO2": maxCounter, "max_speed": max_speed}).encode("utf-8")
     
     s3.put_object(
         Bucket="lab4-data-stuff",
