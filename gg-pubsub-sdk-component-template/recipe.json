@@ -4,12 +4,6 @@
   "ComponentVersion": "0.0.2",
   "ComponentDescription": "AWS Greengrass PubSub SDK template component.",
   "ComponentPublisher": "Dean Colcott: <https://www.linkedin.com/in/deancolcott/>",
-  "ComponentDependencies": {
-    "aws.greengrass.TokenExchangeService": {
-      "VersionRequirement": "^2.0.0",
-      "DependencyType": "HARD"
-    }
-  },
   "ComponentConfiguration": {
     "DefaultConfiguration": {
       "GGV2PubSubSdkConfig": {
