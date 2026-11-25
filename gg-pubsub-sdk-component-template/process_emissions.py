@@ -2,6 +2,7 @@ import json
 import logging
 import sys
 import time
+import boto3
 
 from awsiot.greengrasscoreipc.clientv2 import GreengrassCoreIPCClientV2
 
@@ -10,6 +11,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # SDK Client
 client = GreengrassCoreIPCClientV2()
+s3 = boto3.client("s3", region_name="us-east-2")
 
 def lambda_handler(event, context):
     # TODO1: Get your data
@@ -31,10 +33,18 @@ def lambda_handler(event, context):
             maxCounter = CO2_val
         
     # TODO3: Return the result
+    new_payload = json.dumps({"max_CO2": maxCounter}).encode("utf-8")
+    
+    s3.put_object(
+        Bucket="lab4-data-stuff",
+        Key=f"{vehicle_stat}.json",
+        Body=new_payload,
+    )
+    
     client.publish_to_iot_core(
         topic_name="iot/Vehicle_" + vehicle_stat,
         qos="1",
-        payload=json.dumps({"max_CO2": maxCounter}).encode("utf-8"),
+        payload=new_payload,
     )
 
     return
