@@ -82,7 +82,7 @@
       "Lifecycle": {
         "Install": {
           "Timeout": 300,
-          "Script": "python3 -m pip install --break-system-packages awsgreengrasspubsubsdk"
+          "Script": "python3 -m pip install --break-system-packages awsgreengrasspubsubsdk boto3"
         },
         "Run": {
           "Script": "python3 -u {artifacts:decompressedPath}/gg-pubsub-sdk-component-template/process_emissions.py '{configuration:/GGV2PubSubSdkConfig}'",
