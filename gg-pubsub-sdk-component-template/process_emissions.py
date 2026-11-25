@@ -13,6 +13,8 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 client = GreengrassCoreIPCClientV2()
 s3 = boto3.client("s3", region_name="us-east-2")
 
+overall_dict = {}
+
 def lambda_handler(event, context):
     # TODO1: Get your data
     raw_output = event.message.payload
@@ -23,21 +25,22 @@ def lambda_handler(event, context):
 
     rows = possible_payload if isinstance(possible_payload, list) else [possible_payload]
     # TODO2: Calculate max CO2 emission
-    maxCounter = 0.0
-    max_speed = 0
     vehicle_stat = None
     for record in rows:
         CO2_val = float(record['vehicle_CO2'])
         speed = float(record['vehicle_speed'])
-        vehicle_stat = record['vehicle_id'] 
+        vehicle_stat = record['vehicle_id']
 
-        if CO2_val > maxCounter:
-            maxCounter = CO2_val
-        if speed > max_speed:
-            max_speed = speed
+        if vehicle_stat not in overall_dict:
+            overall_dict[vehicle_stat] = {'max_CO2': 0, "max_speed": 0}
+
+        if CO2_val > overall_dict[vehicle_stat]['max_CO2']:
+            overall_dict[vehicle_stat]['max_CO2'] = CO2_val
+        if speed > overall_dict[vehicle_stat]['max_speed']:
+            overall_dict[vehicle_stat]['max_speed'] = speed
     
     # TODO3: Return the result
-    new_payload = json.dumps({"max_CO2": maxCounter, "max_speed": max_speed, "veh_id": vehicle_stat}).encode("utf-8")
+    new_payload = json.dumps({"max_CO2": overall_dict[vehicle_stat]['max_CO2'], "max_speed": overall_dict[vehicle_stat]['max_speed'], "veh_id": vehicle_stat}).encode("utf-8")
     
     s3.put_object(
         Bucket="lab4-data-stuff",
